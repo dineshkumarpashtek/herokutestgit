@@ -25,7 +25,7 @@ module.exports = function (app, db, pgp) {
       "INSERT INTO account (customername, phone, salesforceid, website) VALUES ('" +
       customername +
       "','" +
-      phone + "','" + salesforceid + "','" + webiste +  
+      phone + "','" + salesforceid + "','" + website +  
       "')";
 
     db.query(insertQuery, true)
