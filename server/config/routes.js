@@ -22,7 +22,7 @@ module.exports = function (app, db, pgp) {
     
     const { customername, phone, salesforceid, website  } = req.body;
     var insertQuery =
-      "INSERT INTO lead (customername, phone, salesforceid, website) VALUES ('" +
+      "INSERT INTO account (customername, phone, salesforceid, website) VALUES ('" +
       AccountName +
       "','" +
       Phone + "','" + SalesforceId + "','" + Webiste +  
