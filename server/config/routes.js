@@ -23,9 +23,9 @@ module.exports = function (app, db, pgp) {
     const { customername, phone, salesforceid, website  } = req.body;
     var insertQuery =
       "INSERT INTO account (customername, phone, salesforceid, website) VALUES ('" +
-      AccountName +
+      customername +
       "','" +
-      Phone + "','" + SalesforceId + "','" + Webiste +  
+      phone + "','" + salesforceid + "','" + webiste +  
       "')";
 
     db.query(insertQuery, true)
