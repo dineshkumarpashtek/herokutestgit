@@ -18,28 +18,7 @@ module.exports = function (app, db, pgp) {
   // =====================================
  
   
-  app.post("/api/createaccount", function (req, res) {
-    
-    const { customername, phone, salesforceid, website  } = req.body;
-    var insertQuery =
-      "INSERT INTO account (customername, phone, salesforceid, website) VALUES ('" +
-      customername +
-      "','" +
-      phone + "','" + salesforceid + "','" + website +  
-      "')";
-
-    db.query(insertQuery, true)
-      .then(function (data) {
-        return res.json(data);
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-      .finally(function () {
-        pgp.end(); // for immediate app exit, closing the connection pool.
-      });
-  });
+  
 
 app.get("/api/getJourneyByID", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
