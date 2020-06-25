@@ -31,7 +31,7 @@ app.get("/api/getJourneyByKey", function (req, res) {
   const { journey_key } = req.body;
   //const {Journeykey}='ixn-created-Meeting-Executed-api';
   const results = [];
-    var query = "SELECT * FROM journey where journey_key = '"+ journey_key +"'";
+    var query = "SELECT * FROM journey where journey_key = '" + journey_key + "'";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
