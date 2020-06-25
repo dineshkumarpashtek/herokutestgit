@@ -20,10 +20,11 @@ module.exports = function (app, db, pgp) {
   
   
 
-app.get("/api/getJourneyByID", function (req, res) {
+app.get("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
+  const {Journeykey}=req.body;
   const results = [];
-    var query = "SELECT * FROM orkestra_Journeys";
+    var query = "SELECT * FROM journey where Journey_key=${Journey_key}";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
@@ -37,7 +38,7 @@ app.get("/api/getJourneyByID", function (req, res) {
       });
   });
   
-  app.get("/api/getTemplateByID", function (req, res) {
+  app.get("/api/getTemplateByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
   const results = [];
     var query = "SELECT * FROM orkestra_Templates";
