@@ -36,10 +36,10 @@ module.exports = function (app, db, pgp) {
 
 app.post("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
-  var a=req.body;
-  const { journey_key } = a[0];
+  //var a=req.body;
+  const { journey_key } = req.body;
   //const {Journeykey}='ixn-created-Meeting-Executed-api';
-  console.log('req.body:'+a[0]);
+  console.log('req.body:'+req.body);
   console.log('journey_key:'+journey_key);
   const results = [];
     var query = "SELECT * FROM journey where journey_key = '" + journey_key + "'";
