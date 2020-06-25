@@ -1,15 +1,7 @@
 var jsforce = require("jsforce");
 
 // Salesforce OAuth2 client information
-var conn = new jsforce.Connection({
-  oauth2: {
-    // you can change loginUrl to connect to sandbox or prerelease env.
-    loginUrl: "https://login.salesforce.com",
-    clientId: process.env.Consumer_Key,
-    clientSecret: process.env.Consumer_Secret,
-    redirectUri: process.env.Callback_URL,
-  },
-});
+
 
 //all the routes for our application
 module.exports = function (app, db, pgp) {
@@ -24,7 +16,7 @@ app.get("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
   const {Journeykey}=req.body;
   const results = [];
-    var query = "SELECT * FROM journey where Journey_key=${Journey_key}";
+    var query = "SELECT * FROM journey where Journey_key=${Journeykey}";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
