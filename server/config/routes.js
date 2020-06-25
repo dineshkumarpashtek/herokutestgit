@@ -22,9 +22,9 @@ module.exports = function (app, db, pgp) {
 
 app.get("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
-  const {Journeykey}=req.body;
+  //const {Journeykey}=req.body;
   const results = [];
-    var query = "SELECT * FROM journey where Journey_key=${Journeykey}";
+    var query = "SELECT * FROM journey where Journey_key='ixn-created-Meeting-Executed-api'";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
