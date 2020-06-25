@@ -34,7 +34,7 @@ module.exports = function (app, db, pgp) {
       });
   });
 
-app.get("/api/getJourneyByKey", function (req, res) {
+app.post("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
   const { journey_key } = req.body;
   //const {Journeykey}='ixn-created-Meeting-Executed-api';
