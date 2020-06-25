@@ -18,7 +18,7 @@ app.get("/api/getJourneyByKey", function (req, res) {
   //const {Journeykey}='ixn-created-Meeting-Executed-api';
   
   const results = [];
-    var query = "SELECT * FROM journey where Journey_key='"+Journeykey+"'";
+    var query = "SELECT * FROM journey where Journey_key like %'"+Journeykey+"'%";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
@@ -51,3 +51,4 @@ app.get("/api/getJourneyByKey", function (req, res) {
   
 
 };
+5
