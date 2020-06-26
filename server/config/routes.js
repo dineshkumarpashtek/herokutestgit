@@ -96,6 +96,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       db.query(customerjourneyquery, true)
       .then(function (data) {
       customer_journey_id=data[0].journey_id;
+      console.log('customer_journey_id:'+customer_journey_id);
       if(customer_journey_id !== journey_id){
       var insertQuery =
       "INSERT INTO customer_journey (customer_id, journey_id) VALUES ('" +
