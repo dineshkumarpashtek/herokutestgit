@@ -86,47 +86,31 @@ app.post("/api/getJourneyByKey", function (req, res) {
       .then(function (data) {
       customer_id=data[0].salesforceid;
       console.log('customerid:'+customer_id);
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-   
-   var journeyquery = "SELECT * FROM journey where journey_key = '" + journey_key + "'";
-    db.query(journeyquery, true)
+      var journeyquery = "SELECT * FROM journey where journey_key = '" + journey_key + "'";
+      db.query(journeyquery, true)
       .then(function (data) {
       journey_id=data[0].ojourneyid;
       console.log('journey_id:'+journey_id);
        // return res.json(data);
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-    
-       
-   var customerjourneyquery= "SELECT * FROM journey";
-    db.query(customerjourneyquery, true)
+      var customerjourneyquery= "SELECT * FROM customer_journey";
+      db.query(customerjourneyquery, true)
       .then(function (data) {
-      customer_journey_id=data[0].ojourneyid;
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-   console.log('customerid:'+customer_id);
-    console.log('journey_id:'+journey_id);
-   console.log('customer_journey_id:'+customer_journey_id);
-   if(customer_journey_id !== journey_id){
-   var insertQuery =
+      customer_journey_id=data[0].journey_id;
+      if(customer_journey_id !== journey_id){
+      var insertQuery =
       "INSERT INTO customer_journey (customer_id, journey_id) VALUES ('" +
       customer_id +
       "','" +
       journey_id +
       "')";
-    db.query(insertQuery, true)
+      
+      db.query(insertQuery, true)
       .then(function (data) {
        return res.json(data);
+      })
+      }
+      })
+      })
       })
       .catch(function (err) {
         console.log("ERROR:", err); // print the error;
@@ -135,7 +119,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    .finally(function () {
         pgp.end(); // for immediate app exit, closing the connection pool.
       });
-   }
+   
    });
  
 
