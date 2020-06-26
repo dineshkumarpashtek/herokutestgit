@@ -114,6 +114,10 @@ app.post("/api/getJourneyByKey", function (req, res) {
       .then(function (data) {
        return res.json(data);
       })
+        .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
       }
       }
        else{
@@ -128,8 +132,20 @@ app.post("/api/getJourneyByKey", function (req, res) {
       .then(function (data) {
        return res.json(data);
       })
+      .catch(function (err) {
+      console.log("ERROR:", err); // print the error;
+       return res.status(400).json({ success: false, error: err });
+      })
       }
       })
+        .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
       })
       })
       .catch(function (err) {
