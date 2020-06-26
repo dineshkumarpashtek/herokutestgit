@@ -95,6 +95,8 @@ app.post("/api/getJourneyByKey", function (req, res) {
       var customerjourneyquery= "SELECT * FROM customer_journey";
       db.query(customerjourneyquery, true)
       .then(function (data) {
+      console.log('data[0].journey_id:'+data.journey_id);
+      console.log('data[0].journey_id:'+data[0].journey_id);  
       customer_journey_id=data[0].journey_id;
       console.log('customer_journey_id:'+customer_journey_id);
       if(customer_journey_id !== journey_id){
