@@ -82,7 +82,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    const results = [];
     db.query(query, true)
       .then(function (data) {
-      var customer_id=data.salesforceid;
+      var customer_id=data[0].salesforceid;
       console.log('customerid:'+customer_id);
       return res.json(data);
       })
