@@ -73,14 +73,17 @@ app.post("/api/getJourneyByKey", function (req, res) {
       });
   });
   
- app.get("/api/updatecustomerjourney", function (req, res) {
+ app.post("/api/updatecustomerjourney", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
-   var customer_key  = 'welath001';
-   var journey_key ='ixn-created-Meeting-Executed-api';
+   const{ journey_key, customer_key} = req.body;
+  // var customer_key  = 'welath001';
+   //var journey_key ='ixn-created-Meeting-Executed-api';
    var customer_id;
    var journey_id;
    var customer_journey_id;
    console.log('customer_key:'+customer_key);
+   console.log('journey_key:'+journey_key);
+   
    var customerquery="SELECT name,salesforceid,customer_key FROM customer where customer_key = '" + customer_key + "'"
     db.query(customerquery, true)
       .then(function (data) {
