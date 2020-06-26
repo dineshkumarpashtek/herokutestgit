@@ -96,7 +96,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       db.query(customerjourneyquery, true)
       .then(function (data) {
       console.log('data:'+data);
-      if(data !== null && data !== ''){  
+      if(data.length > 0){  
       customer_journey_id=data[0].journey_id;
       console.log('customer_journey_id:'+customer_journey_id);
       if(customer_journey_id !== journey_id){
