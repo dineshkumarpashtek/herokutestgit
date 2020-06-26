@@ -132,8 +132,9 @@ app.post("/api/getJourneyByKey", function (req, res) {
    .finally(function () {
         pgp.end(); // for immediate app exit, closing the connection pool.
       });
-  });
- }
+   }
+   });
+ 
 
   
   
