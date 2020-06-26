@@ -75,7 +75,8 @@ app.post("/api/getJourneyByKey", function (req, res) {
   
  app.get("/api/updatecustomerjourney", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
-   const { customer_key } = 'welath001';
+   var customer_key  = 'welath001';
+   console.log('customer_key:'+customer_key);
    var query="SELECT name,salesforceid,customer_key FROM customer where customer_key = '" + customer_key + "'"
    console.log('query:'+query);
    console.log('customerid:'+query.salesforceid);
