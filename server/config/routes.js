@@ -77,11 +77,14 @@ app.post("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
    var customer_key  = 'welath001';
    var journey_key ='ixn-created-Meeting-Executed-api';
+   var customer_id;
+   var journey_id;
+   var customer_journey_id;
    console.log('customer_key:'+customer_key);
    var customerquery="SELECT name,salesforceid,customer_key FROM customer where customer_key = '" + customer_key + "'"
     db.query(customerquery, true)
       .then(function (data) {
-      var customer_id=data[0].salesforceid;
+      customer_id=data[0].salesforceid;
       console.log('customerid:'+customer_id);
       })
       .catch(function (err) {
@@ -92,7 +95,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    var journeyquery = "SELECT * FROM journey where journey_key = '" + journey_key + "'";
     db.query(journeyquery, true)
       .then(function (data) {
-      var journey_id=data[0].ojourneyid;
+      journey_id=data[0].ojourneyid;
       console.log('journey_id:'+journey_id);
        // return res.json(data);
       })
@@ -105,7 +108,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    var customerjourneyquery= "SELECT * FROM journey";
     db.query(customerjourneyquery, true)
       .then(function (data) {
-      var customer_journey_id=data[0].ojourneyid;
+      customer_journey_id=data[0].ojourneyid;
       })
       .catch(function (err) {
         console.log("ERROR:", err); // print the error;
