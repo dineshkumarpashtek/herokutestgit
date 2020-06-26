@@ -78,14 +78,13 @@ app.post("/api/getJourneyByKey", function (req, res) {
    var customer_key  = 'welath001';
    console.log('customer_key:'+customer_key);
    var query="SELECT name,salesforceid,customer_key FROM customer where customer_key = '" + customer_key + "'"
-   console.log('query:'+query);
-   console.log('customerid:'+query.salesforceid);
-   var customer_id=query.salesforceid;
-   console.log('customerid:'+customer_id);
+   
    const results = [];
     db.query(query, true)
       .then(function (data) {
-        return res.json(data);
+      var customer_id=data.salesforceid;
+      console.log('customerid:'+customer_id);
+      return res.json(data);
       })
       .catch(function (err) {
         console.log("ERROR:", err); // print the error;
