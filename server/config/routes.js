@@ -113,6 +113,19 @@ app.post("/api/getJourneyByKey", function (req, res) {
       })
       }
       }
+       else{
+        var insertQuery =
+      "INSERT INTO customer_journey (customer_id, journey_id) VALUES ('" +
+      customer_id +
+      "','" +
+      journey_id +
+      "')";
+      
+      db.query(insertQuery, true)
+      .then(function (data) {
+       return res.json(data);
+      })
+      }
       })
       })
       })
