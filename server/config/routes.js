@@ -130,7 +130,10 @@ app.post("/api/getJourneyByKey", function (req, res) {
       
       db.query(insertQuery, true)
       .then(function (data) {
-       return res.json(data);
+       console.log('data:'+data);
+        console.log('data:'+data[0].id);
+        return res.json(data);
+      
       })
       .catch(function (err) {
       console.log("ERROR:", err); // print the error;
@@ -138,7 +141,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       })
       }
       })
-        .catch(function (err) {
+      .catch(function (err) {
         console.log("ERROR:", err); // print the error;
         return res.status(400).json({ success: false, error: err });
       })
