@@ -100,8 +100,12 @@ app.post("/api/getJourneyByKey", function (req, res) {
       .then(function (data) {
       console.log('data:'+data);
       if(data.length > 0){  
+        for(var i=0;i<data.length;i++){
+         if(data[i].customer_id === customer_id && data[i].journey_id !=== journey_id){
       customer_journey_id=data[0].journey_id;
       console.log('customer_journey_id:'+customer_journey_id);
+         }
+        }
       if(customer_journey_id !== journey_id){
       var insertQuery =
       "INSERT INTO customer_journey (customer_id, journey_id) VALUES ('" +
