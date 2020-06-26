@@ -102,7 +102,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       })
     
        
-   var customerjourneyquery= "SELECT * FROM journey where customer_journey";
+   var customerjourneyquery= "SELECT * FROM journey";
     db.query(customerjourneyquery, true)
       .then(function (data) {
       var customer_journey_id=data[0].ojourneyid;
