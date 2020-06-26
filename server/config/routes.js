@@ -130,9 +130,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       
       db.query(insertQuery, true)
       .then(function (data) {
-       console.log('data:'+data);
-        console.log('data:'+data[0].id);
-        return res.json(data);
+       return res.json(data);
       
       })
       .catch(function (err) {
