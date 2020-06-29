@@ -55,6 +55,28 @@ app.post("/api/getJourneyByKey", function (req, res) {
         pgp.end(); // for immediate app exit, closing the connection pool.
       });
   });
+
+  app.post("/api/GetCreativeByKey", function (req, res) {
+    //res.render("index.ejs"); // load the index.ejs file
+  //var a=req.body;
+  const { creative_key } = req.body;
+  //const {Journeykey}='ixn-created-Meeting-Executed-api';
+  console.log('req.body:'+req.body);
+  console.log('creative_key:'+creative_key);
+    var query = "SELECT * FROM creative where templatekey = '" + creative_key + "'";
+    db.query(query, true)
+      .then(function (data) {
+        return res.json(data);
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+  });
+
   
   app.get("/api/getTemplateByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
