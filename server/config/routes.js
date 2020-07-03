@@ -212,10 +212,11 @@ app.post("/api/getJourneyByKey", function (req, res) {
       console.log('creative_id:'+creative_id);
       console.log('journey_id:'+journey_id);  
        // return res.json(data);
-      var customertemplatequery= "select * from Customer_creative where customerId='a0X5w00000Cp531EAB' And CreativeId!='a1A5w00000HGcMLEA1'";
+      var customertemplatequery= "select * from Customer_creative where customerId='a0X5w00000Cp531EAB' And CreativeId='a1A5w00000HGcMLEA1'";
       db.query(customertemplatequery, true)
       .then(function (data) {
       console.log('data:'+data);
+        if(data.length == 0){
       var insertQuery =
       "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
       customer_id +
@@ -233,8 +234,10 @@ app.post("/api/getJourneyByKey", function (req, res) {
         console.log("ERROR:", err); // print the error;
         return res.status(400).json({ success: false, error: err });
       })
-     
-      
+      }
+        else{
+          return res.json(data);
+        }
       })
       .catch(function (err) {
         console.log("ERROR:", err); // print the error;
