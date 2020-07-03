@@ -225,7 +225,9 @@ app.post("/api/getJourneyByKey", function (req, res) {
       console.log('customer_creative_id:'+customer_creative_id);
          }
         }
-      if(customer_creative_id !== creative_id && customer_creative_id !== undefined){
+      console.log('customer_creative_id:'+customer_creative_id);
+      
+        if((customer_creative_id !== undefined) && (customer_creative_id !== creative_id)){
         console.log('inside if condtion');
       var insertQuery =
       "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
