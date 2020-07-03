@@ -193,7 +193,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    //var journey_key ='ixn-created-Meeting-Executed-api';
    var customer_id;
    var creative_id;
-   var customer_creative_id;
+   var customer_creative_id='';
    var journey_id;
    console.log('customer_key:'+customer_key);
    console.log('Template_key:'+Template_key);
@@ -224,7 +224,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       console.log('customer_creative_id:'+customer_creative_id);
          }
         }
-      if(customer_creative_id != creative_id){
+      if(customer_creative_id != creative_id && customer_creative_id != ''){
         console.log('inside if condtion');
       var insertQuery =
       "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
