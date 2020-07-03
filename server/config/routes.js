@@ -186,7 +186,104 @@ app.post("/api/getJourneyByKey", function (req, res) {
       });
    
    });
+ app.post("/api/updatecustomerTemplate", function (req, res) {
+    //res.render("index.ejs"); // load the index.ejs file
+   const{ Template_key, customer_key} = req.body;
+  // var customer_key  = 'welath001';
+   //var journey_key ='ixn-created-Meeting-Executed-api';
+   var customer_id;
+   var creative_id;
+   var customer_creative_id;
+   var journey_id;
+   console.log('customer_key:'+customer_key);
+   console.log('Template_key:'+Template_key);
+   
+   var customerquery="SELECT name,salesforceid,customer_key FROM customer where customer_key = '" + customer_key + "'"
+    db.query(customerquery, true)
+      .then(function (data) {
+      customer_id=data[0].salesforceid;
+      console.log('customerid:'+customer_id);
+      var creativequery = "SELECT * FROM creative where templatekey = '" + Template_key + "'";
+      db.query(creativequery, true)
+      .then(function (data) {
+      creative_id=data[0].salesforceid;
+      journey_id=data[0].journey_id;   
+      console.log('creative_id:'+creative_id);
+      console.log('journey_id:'+journey_id);  
+       // return res.json(data);
+      var customertemplatequery= "SELECT * FROM customer_creative";
+      db.query(customertemplatequery, true)
+      .then(function (data) {
+      console.log('data:'+data);
+      if(data.length > 0){  
+        for(var i=0;i<data.length;i++){
+          console.log('inside for loop:'+data[i].creativeid);
+         if(data[i].customerid === customer_id && data[i].creativeid !== creative_id){
+         console.log('inside if condtion:'+data[i].creativeid);
+           customer_creative_id=data[i].creativeid;
+      console.log('customer_creative_id:'+customer_creative_id);
+         }
+        }
+      if(customer_creative_id !== creative_id){
+      var insertQuery =
+      "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
+      customer_id +
+      "','" +
+      journey_id +
+      "','" +
+      creative_id +  
+      "')";
+      
+      db.query(insertQuery, true)
+      .then(function (data) {
+       return res.json(data);
+      })
+        .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      }
+      }
+       else{
+        var insertQuery =
+      "INSERT INTO customer_journey (customer_id, journey_id) VALUES ('" +
+      customer_id +
+      "','" +
+      journey_id +
+      "')";
+      
+      db.query(insertQuery, true)
+      .then(function (data) {
+       return res.json(data);
+      
+      })
+      .catch(function (err) {
+      console.log("ERROR:", err); // print the error;
+       return res.status(400).json({ success: false, error: err });
+      })
+      }
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+   
+   });
  
+  
 
   
   
