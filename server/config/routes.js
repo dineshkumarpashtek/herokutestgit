@@ -243,8 +243,9 @@ app.post("/api/getJourneyByKey", function (req, res) {
         return res.status(400).json({ success: false, error: err });
       })
       }
-      }
-       else{
+      
+       if(data.length == 0){
+         console.log('else condition;');
         var insertQuery =
      "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
       customer_id +
@@ -264,6 +265,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
        return res.status(400).json({ success: false, error: err });
       })
       }
+      }  
       })
       .catch(function (err) {
         console.log("ERROR:", err); // print the error;
