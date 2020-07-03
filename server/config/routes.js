@@ -212,7 +212,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       console.log('creative_id:'+creative_id);
       console.log('journey_id:'+journey_id);  
        // return res.json(data);
-      var customertemplatequery= `select * from Customer_creative where customerId=${customer_id} And CreativeId=${creative_id}`;
+      var customertemplatequery= `select * from Customer_creative where customerid=${customer_id} And creativeid=${creative_id}`;
       db.query(customertemplatequery, true)
       .then(function (data) {
       console.log('data:'+data);
