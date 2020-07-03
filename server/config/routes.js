@@ -233,8 +233,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
         console.log("ERROR:", err); // print the error;
         return res.status(400).json({ success: false, error: err });
       })
-      }
-      }
+     
       
       })
       .catch(function (err) {
