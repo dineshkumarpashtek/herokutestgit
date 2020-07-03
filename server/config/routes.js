@@ -212,23 +212,10 @@ app.post("/api/getJourneyByKey", function (req, res) {
       console.log('creative_id:'+creative_id);
       console.log('journey_id:'+journey_id);  
        // return res.json(data);
-      var customertemplatequery= "SELECT * FROM customer_creative";
+      var customertemplatequery= "select * from Customer_creative where customerId='a0X5w00000Cp531EAB' And CreativeId!='a1A5w00000HGcMLEA1'";
       db.query(customertemplatequery, true)
       .then(function (data) {
       console.log('data:'+data);
-      if(data.length > 0){  
-        for(var i=0;i<data.length;i++){
-          console.log('inside for loop:'+data[i].creativeid);
-         if(data[i].customerid === customer_id && data[i].creativeid !== creative_id){
-         console.log('inside if condtion:'+data[i].creativeid);
-           customer_creative_id=data[i].creativeid;
-      console.log('customer_creative_id:'+customer_creative_id);
-         }
-        }
-      console.log('customer_creative_id:'+customer_creative_id);
-      
-        if((!customer_creative_id) && (customer_creative_id !== creative_id)){
-        console.log('inside if condtion');
       var insertQuery =
       "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
       customer_id +
@@ -248,27 +235,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       })
       }
       }
-       else{
-         console.log('else condition;');
-        var insertQuery =
-     "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
-      customer_id +
-      "','" +
-      journey_id +
-      "','" +
-      creative_id +  
-      "')";
       
-      db.query(insertQuery, true)
-      .then(function (data) {
-       return res.json(data);
-      
-      })
-      .catch(function (err) {
-      console.log("ERROR:", err); // print the error;
-       return res.status(400).json({ success: false, error: err });
-      })
-      }
       })
       .catch(function (err) {
         console.log("ERROR:", err); // print the error;
