@@ -193,10 +193,11 @@ app.post("/api/getJourneyByKey", function (req, res) {
    //var journey_key ='ixn-created-Meeting-Executed-api';
    var customer_id;
    var creative_id;
-   var customer_creative_id='';
+   var customer_creative_id;
    var journey_id;
    console.log('customer_key:'+customer_key);
    console.log('Template_key:'+Template_key);
+   console.log('customer_creative_id:'+customer_creative_id);
    
    var customerquery="SELECT name,salesforceid,customer_key FROM customer where customer_key = '" + customer_key + "'"
     db.query(customerquery, true)
@@ -224,7 +225,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       console.log('customer_creative_id:'+customer_creative_id);
          }
         }
-      if(customer_creative_id != creative_id && customer_creative_id != ''){
+      if(customer_creative_id !== creative_id && customer_creative_id !== undefined){
         console.log('inside if condtion');
       var insertQuery =
       "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
@@ -245,7 +246,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
       })
       }
       
-       if(data.length == 0){
+       if(data.length === 0){
          console.log('else condition;');
         var insertQuery =
      "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
