@@ -246,10 +246,12 @@ app.post("/api/getJourneyByKey", function (req, res) {
       }
        else{
         var insertQuery =
-      "INSERT INTO customer_journey (customer_id, journey_id) VALUES ('" +
+     "INSERT INTO customer_creative (customerid, journeyid, creativeid) VALUES ('" +
       customer_id +
       "','" +
       journey_id +
+      "','" +
+      creative_id +  
       "')";
       
       db.query(insertQuery, true)
