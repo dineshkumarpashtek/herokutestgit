@@ -259,7 +259,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    
    });
  
-   app.get("/api/getExtensionKey", function (req, res) {
+   app.post("/api/getExtensionKey", function (req, res) {
    const { Extension_Key } = req.body;
   console.log('Extension_Key:'+Extension_Key);  
   const results = [];
