@@ -263,7 +263,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    const { Extension_Key } = req.body;
   console.log('Extension_Key:'+Extension_Key);  
   const results = [];
-    var query = "SELECT * FROM Data_Extension_Field where data_extension = '" + Extension_Key + "' ";
+    var query = "SELECT * FROM data_extension where extension_key = '" + Extension_Key + "' ";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
