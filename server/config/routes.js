@@ -277,7 +277,46 @@ app.post("/api/getJourneyByKey", function (req, res) {
       });
   });
   
-
+ app.post("/api/updateJourneyExtension", function (req, res) {
+   const { Extension_Key,Data_Extension_Id,Journey_Id } = req.body;
+  console.log('Extension_Key:'+Extension_Key);
+   console.log('Data_Extension_Id:'+Data_Extension_Id);
+   console.log('Journey_Id:'+Journey_Id);
+   
+   var query = "SELECT * FROM journey_data_extension where dataextensionid = '" + Data_Extension_Id + "' And journeyid = '" + Journey_Id+ "' ";
+     db.query(query, true)
+      .then(function (data) {
+      console.log('data:'+data);
+        if(data.length == 0){
+      var insertQuery =
+      "INSERT INTO journey_data_extension (dataextensionid, journeyid) VALUES ('" +
+      Data_Extension_Id +
+      "','" +
+      Journey_Id +
+      "')";
+      
+      db.query(insertQuery, true)
+      .then(function (data) {
+       return res.json(data);
+      })
+        .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      }
+        else{
+          return res.json(data);
+        }
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+  });
+  
   
   
 };
