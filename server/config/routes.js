@@ -341,7 +341,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
    console.log('Data_Extension_Key:'+Data_Extension_Key);
    var data_extension_id;
    var customer_id; 
-   var customerquery = "SELECT * FROM customer where customer_key = '" + Customer_Key + "';
+   var customerquery = "SELECT * FROM customer where customer_key = '" + Customer_Key + "'";
     db.query(customerquery, true)
       .then(function (data) {
       customer_id=data[0].id;
