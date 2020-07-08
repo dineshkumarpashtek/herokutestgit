@@ -286,12 +286,12 @@ app.post("/api/getJourneyByKey", function (req, res) {
    var journeyquery = "SELECT * FROM journey where journey_key = '" + Journey_Key + "'";
     db.query(journeyquery, true)
       .then(function (data) {
-      journey_id=data[0].Id;
+      journey_id=data[0].id;
       console.log('journey_id:'+journey_id);
      var extensionquery = "select * from data_extension where extension_key = '" + Data_Extension_Key + "'";
      db.query(extensionquery, true)
       .then(function (data) {
-      data_extension_id=data[0].Id;
+      data_extension_id=data[0].id;
        console.log('data_extension_id:'+data_extension_id);
      var journeyextensionquery= "select * from journey_data_extension where dataextensionid ='" + data_extension_id +"' And journeyid = '" + journey_id+ "' ";
       db.query(journeyextensionquery, true)
