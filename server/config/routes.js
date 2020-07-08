@@ -260,7 +260,23 @@ app.post("/api/getJourneyByKey", function (req, res) {
    });
   
  
-  
+  app.post("/api/getdataExtensionKey", function (req, res) {
+   const { Extension_Key } = req.body;
+  console.log('Extension_Key:'+Extension_Key);  
+  const results = [];
+    var query = "SELECT * FROM data_extension where extension_key = '" + Extension_Key + "' ";
+    db.query(query, true)
+      .then(function (data) {
+        return res.json(data);
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+  });
  
   
    app.post("/api/getExtensionKey", function (req, res) {
