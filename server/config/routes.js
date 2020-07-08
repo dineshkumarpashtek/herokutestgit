@@ -335,7 +335,63 @@ app.post("/api/getJourneyByKey", function (req, res) {
       });
   });
   
-  
+   app.post("/api/updateCustomerExtension", function (req, res) {
+   const { Data_Extension_Key,Customer_Key } = req.body;
+   console.log('Customer_Key:'+Customer_Key);
+   console.log('Data_Extension_Key:'+Data_Extension_Key);
+   var data_extension_id;
+   var customer_id; 
+   var customerquery = "SELECT * FROM customer where customer_key = '" + Customer_Key + "';
+    db.query(customerquery, true)
+      .then(function (data) {
+      customer_id=data[0].id;
+      console.log('customer_id:'+customer_id);
+     var extensionquery = "select * from data_extension where extension_key = '" + Data_Extension_Key + "'";
+     db.query(extensionquery, true)
+      .then(function (data) {
+      data_extension_id=data[0].id;
+       console.log('data_extension_id:'+data_extension_id);
+     var customerextensionquery= "select * from customer_data_extension where dataextensionid ='" + data_extension_id +"' And customerid = '" + customer_id+ "' ";
+      db.query(customerextensionquery, true)
+      .then(function (data) {
+      console.log('data:'+data);
+        if(data.length == 0){
+      var insertQuery =
+      "INSERT INTO customer_data_extension (dataextensionid, customerid) VALUES ('" +
+      data_extension_id +
+      "','" +
+      customer_id +
+      "')";
+      
+      db.query(insertQuery, true)
+      .then(function (data) {
+       return res.json(data);
+      })
+        .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      }
+        else{
+          return res.json(data);
+        }
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      })
+      
+       
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+  });
   
 };
 
