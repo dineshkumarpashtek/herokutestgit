@@ -1,5 +1,4 @@
-var jsforce = require("jsforce");
-var _ = require("lodash/core");
+//var jsforce = require("jsforce");
 
 // Salesforce OAuth2 client information
 var conn = new jsforce.Connection({
