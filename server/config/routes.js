@@ -329,7 +329,9 @@ app.post("/api/getJourneyByKey", function (req, res) {
         pgp.end(); // for immediate app exit, closing the connection pool.
       });
   });
+   
   
+
    app.post("/api/updateCustomerExtension", function (req, res) {
    const { Data_Extension_Key,Customer_Key } = req.body;
    console.log('Customer_Key:'+Customer_Key);
