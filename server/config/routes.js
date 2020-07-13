@@ -22,6 +22,9 @@ module.exports = function (app, db, pgp) {
         pgp.end(); // for immediate app exit, closing the connection pool.
       });
   });
+  
+ 
+ 
 
 app.post("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
