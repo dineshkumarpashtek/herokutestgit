@@ -278,8 +278,8 @@ app.post("/api/getJourneyByKey", function (req, res) {
    const { Extension_Key } = req.body;
   console.log('Extension_Key:'+Extension_Key);  
   const results = [];
-    var query = "SELECT testdatafields.name,testdatafields.customerkey,testdatafields.description,testdatafields.isprimarykey,testdatafields.fieldtype,testdatafields.defaultvalue,testdatafields.maxlength,testdatafields.isrequired \
-FROM testdataextensionfields \
+     
+    var query = "SELECT testdataextension.*,testdatafields.* FROM testdataextensionfields \
 INNER JOIN testdataextension ON testdataextension.ID = testdataextensionfields.data_extension_id \
 INNER JOIN testdatafields  \
     ON testdataextensionfields.fields_id = testdatafields.ID \
