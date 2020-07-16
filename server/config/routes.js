@@ -368,7 +368,7 @@ WHERE testdataextension.extension_key= '" + Extension_Key + "' ";
       .then(function (data) {
       customer_id=data[0].id;
       console.log('customer_id:'+customer_id);
-     var extensionquery = "select * from data_extension where extension_key = '" + Data_Extension_Key + "'";
+     var extensionquery = "select * from testdataextension where extension_key = '" + Data_Extension_Key + "'";
      db.query(extensionquery, true)
       .then(function (data) {
       data_extension_id=data[0].id;
