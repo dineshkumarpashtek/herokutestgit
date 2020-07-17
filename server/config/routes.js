@@ -279,11 +279,11 @@ app.post("/api/getJourneyByKey", function (req, res) {
   console.log('Extension_Key:'+Extension_Key);  
   const results = [];
      
-    var query = "SELECT testdataextension.*,testdatafields.* FROM testdataextensionfields \
-INNER JOIN testdataextension ON testdataextension.ID = testdataextensionfields.data_extension_id \
-INNER JOIN testdatafields  \
-    ON testdataextensionfields.fields_id = testdatafields.ID \
-WHERE testdataextension.extension_key= '" + Extension_Key + "' ";
+    var query = "SELECT dataextension.*,datafields.* FROM dataextensionfields \
+INNER JOIN dataextension ON dataextension.ID = dataextensionfields.data_extension_id \
+INNER JOIN datafields  \
+    ON dataextensionfields.fields_id = datafields.ID \
+WHERE dataextension.extension_key= '" + Extension_Key + "' ";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
