@@ -257,6 +257,9 @@ where templatekey = '" + creative_key + "'";
         return res.status(400).json({ success: false, error: err });
       })
         }
+       else{
+            return res.json(data);
+        }
       }
       else{
         console.log('else condition');
