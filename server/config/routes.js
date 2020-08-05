@@ -60,7 +60,7 @@ app.post("/api/getJourneyByKey", function (req, res) {
   const results = [];
     var query = "SELECT * from customer_journey \
 INNER JOIN journey \
-ON customer_journey.journey_id = journey.id \ 
+ON customer_journey.journey_id = journey.id \
 where journey.journey_key = '" + journey_key + "'";
     db.query(query, true)
       .then(function (data) {
