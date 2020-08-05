@@ -243,6 +243,9 @@ where templatekey = '" + creative_key + "'";
       console.log('data:'+data);
         if(data.length > 0){
         console.log('dataid:'+data[0].id);
+        console.log('dataid:'+data[0].mcstatus);
+        if(data[0].mcstatus != true){
+        console.log('inside mcstatus condition');
         var updateQuery = "UPDATE customer_journey SET mcstatus = true WHERE id = '" + data[0].id + "'";
       
       db.query(updateQuery, true)
@@ -253,6 +256,7 @@ where templatekey = '" + creative_key + "'";
         console.log("ERROR:", err); // print the error;
         return res.status(400).json({ success: false, error: err });
       })
+        }
       }
       else{
         console.log('else condition');
