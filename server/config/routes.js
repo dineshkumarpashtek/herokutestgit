@@ -128,12 +128,11 @@ where templatekey = '" + creative_key + "'";
   console.log('req.body:'+req.body);
   console.log('creative_key:'+creative_key);
     var query="SELECT * \
-FROM customer_creative RU \
-INNER JOIN creative U \
-    ON U.ID = RU.creativeid \
-INNER JOIN base_template R \ 
-    ON U.basetemplateid = R.ID \
-WHERE U.templatekey = = '" + creative_key + "'";
+FROM customer_creative CC \
+INNER JOIN creative CT \
+    ON CT.ID = CC.creativeid \
+INNER JOIN base_template B ON CT.basetemplateid = B.ID \
+WHERE CT.templatekey = = '" + creative_key + "'";
  
     db.query(query, true)
       .then(function (data) {
