@@ -326,7 +326,92 @@ WHERE CT.templatekey  = '" + creative_key + "'";
       });
    
    });
+      app.post("/api/updatecustomercreativestatus", function (req, res) {
+    //res.render("index.ejs"); // load the index.ejs file
+   const{ Template_key, customer_key} = req.body;
+  // var customer_key  = 'welath001';
+   //var journey_key ='ixn-created-Meeting-Executed-api';
+   var customer_id;
+   var creative_id;
+   var customer_journey_id;
+   console.log('customer_key:'+customer_key);
+   console.log('journey_key:'+Template_key);
+   
+   var customerquery="SELECT id,name,salesforceid,customer_key FROM customer where customer_key = '" + customer_key + "'"
+    db.query(customerquery, true)
+      .then(function (data) {
+      customer_id=data[0].id;
+      console.log('customerid:'+customer_id);
+      var creativequery = "SELECT * FROM creative where templatekey = '" + Template_key + "'";
+      db.query(creativequery, true)
+      .then(function (data) {
+      creative_id=data[0].id;
+      console.log('creative_id:'+creative_id);
+       // return res.json(data);
+      var customerjourneyquery= "SELECT * FROM customer_creative where creativeid = '" + creative_id + "'  And customerid = '" + customer_id + "' ";
+      db.query(customerjourneyquery, true)
+      .then(function (data) {
+      console.log('data:'+data);
+        if(data.length > 0){
+        console.log('dataid:'+data[0].id);
+        console.log('dataid:'+data[0].mcstatus);
+        if(data[0].mcstatus != true){
+        console.log('inside mcstatus condition');
+        var updateQuery = "UPDATE customer_creative SET mcstatus = true WHERE id = '" + data[0].id + "'";
+      
+      db.query(updateQuery, true)
+      .then(function (data) {
+       return res.json(data);
+      })
+        .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+        }
+       else{
+            return res.json(data);
+        }
+      }
+      else{
+        console.log('else condition');
+        var insertQuery =
+      "INSERT INTO customer_creative (customerid, creativeid,mcstatus) VALUES ('" +
+      customer_id +
+      "','" +
+      creative_id +
+      "',true)";
+      
+      db.query(insertQuery, true)
+      .then(function (data) {
+       return res.json(data);
+      
+      })
+      .catch(function (err) {
+      console.log("ERROR:", err); // print the error;
+       return res.status(400).json({ success: false, error: err });
+      })
+      }
         
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+   
+   });  
   
   
   
