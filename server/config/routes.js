@@ -120,7 +120,33 @@ where templatekey = '" + creative_key + "'";
       });
   });
 
-  
+  app.post("/api/GetTemplateCustomerCreativeByKey", function (req, res) {
+    //res.render("index.ejs"); // load the index.ejs file
+  //var a=req.body;
+  const { creative_key } = req.body;
+  //const {Journeykey}='ixn-created-Meeting-Executed-api';
+  console.log('req.body:'+req.body);
+  console.log('creative_key:'+creative_key);
+    var query="SELECT * \
+FROM customer_creative RU \
+INNER JOIN creative U \
+    ON U.ID = RU.creativeid \
+INNER JOIN base_template R \ 
+    ON U.basetemplateid = R.ID \
+WHERE U.templatekey = = '" + creative_key + "'";
+ 
+    db.query(query, true)
+      .then(function (data) {
+        return res.json(data);
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+  });
   
  app.post("/api/updatecustomerjourney", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
