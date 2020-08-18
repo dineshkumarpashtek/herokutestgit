@@ -131,8 +131,10 @@ where templatekey = '" + creative_key + "'";
 FROM customer_creative CC \
 INNER JOIN creative CT \
     ON CT.ID = CC.creativeid \
-INNER JOIN base_template B \
-  ON CT.basetemplateid = B.ID \
+INNER JOIN commoncreative B  \
+  ON CT.commoncreativeid = B.ID \
+INNER JOIN base_template c \
+  ON B.base_templateid = c.ID \
 WHERE CT.templatekey  = '" + creative_key + "'";
  
     db.query(query, true)
