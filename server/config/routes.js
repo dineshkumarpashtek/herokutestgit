@@ -29,7 +29,6 @@ module.exports = function (app, db, pgp) {
 
 app.post("/api/getJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
-  //var a=req.body;
   const { journey_key } = req.body;
   //const {Journeykey}='ixn-created-Meeting-Executed-api';
   console.log('req.body:'+req.body);
