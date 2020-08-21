@@ -73,6 +73,33 @@ where journey.journey_key = '" + journey_key + "'";
         pgp.end(); // for immediate app exit, closing the connection pool.
       });
   });
+  
+   app.post("/api/getJourneyDataExtensionByKey", function (req, res) {
+    //res.render("index.ejs"); // load the index.ejs file
+  //var a=req.body;
+  const { journey_key } = req.body;
+  //const {Journeykey}='ixn-created-Meeting-Executed-api';
+  console.log('req.body:'+req.body);
+  console.log('journey_key:'+journey_key);
+  const results = [];
+    var query = "SELECT * FROM journey_data_extension \
+INNER JOIN dataextension \
+ON dataextension.ID = journey_data_extension.dataextensionid \
+INNER JOIN journey  \
+    ON journey_data_extension.journeyid = journey.ID \
+where journey.journey_key = '" + journey_key + "'";
+    db.query(query, true)
+      .then(function (data) {
+        return res.json(data);
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
+  });
 
   app.post("/api/GetCreativeByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
