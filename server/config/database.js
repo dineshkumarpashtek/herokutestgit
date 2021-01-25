@@ -8,6 +8,7 @@ var cn = {
   database: "d3832nsu7rn40c",
   user: "juxczxfqqiluwr",
   password: "ad7df772bb90389b6689438f8045b4b2f06976ee28e4e3aa6356e7802e3fcfaf",
+  ssl: true
 };
 // You can check for all default values in:
 // https://github.com/brianc/node-postgres/blob/master/lib/defaults.js
