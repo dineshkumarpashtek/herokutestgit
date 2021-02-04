@@ -3,11 +3,11 @@ var pgp = require("./pgpromise.js");
 
 // Database connection details;
 var cn = {
-  host: "ec2-54-224-175-142.compute-1.amazonaws.com", // 'localhost' is the default;
+  host: "ec2-50-19-32-202.compute-1.amazonaws.com", // 'localhost' is the default;
   port: 5432, // 5432 is the default;
-  database: "dqdr7n4bhcomf",
-  user: "ynrcoexcfruxng",
-  password: "1115a1c7a2f7e9dedf6bf928e554e0fdfc20a69b24d6cbec0c5997532628646b",
+  database: "d64j8fej8tdh1n",
+  user: "oxgzetlxlllbrb",
+  password: "002d068877e057229cf86302cf7cf74d1d50b85e4942c6eac552e453f03466a2",
   ssl: true
 };
 // You can check for all default values in:
