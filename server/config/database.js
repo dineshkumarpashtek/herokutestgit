@@ -12,6 +12,11 @@ var cn = {
 };
 // You can check for all default values in:
 // https://github.com/brianc/node-postgres/blob/master/lib/defaults.js
-var db = pgp(cn); // database instance;
-console.log('db:'+JSON.stringify(db));
+var db = pgp(cn) // database instance;
+.then(obj => {
+        obj.done(); // success, release the connection;
+    })
+    .catch(error => {
+        console.log('ERROR:', error.message || error);
+    });
 module.exports = db;
