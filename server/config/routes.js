@@ -7,7 +7,19 @@ module.exports = function (app, db, pgp) {
   // =====================================
  
   app.post("/authentication",(req,res) =>{
-  return res.status(200).json({ success: true});
+  
+    var query = "select * from dataextension;";
+     db.query(query, true)
+      .then(function (data) {
+        return res.json(data);
+      })
+      .catch(function (err) {
+        console.log("ERROR:", err); // print the error;
+        return res.status(400).json({ success: false, error: err });
+      })
+   .finally(function () {
+        pgp.end(); // for immediate app exit, closing the connection pool.
+      });
   });
   
   app.post("/api/getCustomerJourneyByKey", function (req, res) {
