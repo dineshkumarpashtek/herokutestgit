@@ -6,6 +6,9 @@ module.exports = function (app, db, pgp) {
   // HOME PAGE (with login links) ========
   // =====================================
  
+  app.post("/authentication",(req,res) =>{
+  return res.status(200).json({ success: true});
+  });
   
   app.post("/api/getCustomerJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
