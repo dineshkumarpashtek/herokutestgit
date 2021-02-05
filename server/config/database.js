@@ -18,12 +18,5 @@ console.log('process.env.DATABASE_URL:'+process.env.DATABASE_URL);
 // You can check for all default values in:
 // https://github.com/brianc/node-postgres/blob/master/lib/defaults.js
 var db = pgp(cn); // database instance; 
-db.connect()
-    .then(obj => {
-        obj.done(); // success, release the connection;
-   console.log('obj:'+obj);
-    })
-    .catch(error => {
-        console.log('ERROR:', error.message || error);
-});
+
 module.exports = db;
