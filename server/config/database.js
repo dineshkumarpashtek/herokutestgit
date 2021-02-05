@@ -1,20 +1,11 @@
 // See also: https://github.com/vitaly-t/pg-promise#initialization-options
-var options = {
-    error: function (error, e) {
-        if (e.cn) {
-            // A connection-related error;
-            console.log("CN:", e.cn);
-            console.log("EVENT:", error.message);
-        }
-    }
-};
-var pgp = require("./pgpromise.js")(options);
 
-const db = pgp('invalid connection string');
+var pgp = require("./pgpromise.js");
+
 
 
 // Database connection details;
-/*var cn = {
+var cn = {
   host: "ec2-3-218-75-21.compute-1.amazonaws.com", // 'localhost' is the default;
   port: 5432, // 5432 is the default;
   database: "d8muah1afp73t",
@@ -24,12 +15,5 @@ const db = pgp('invalid connection string');
 };
 // You can check for all default values in:
 // https://github.com/brianc/node-postgres/blob/master/lib/defaults.js
-var db = pgp(cn); // database instance; */
-db.connect()
-    .then(obj => {
-        obj.done(); // success, release the connection;
-    })
-    .catch(error => {
-        console.log('ERROR:', error.message || error);
-    });
+var db = pgp(cn); // database instance; 
 module.exports = db;
