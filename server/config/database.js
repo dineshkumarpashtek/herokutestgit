@@ -10,7 +10,7 @@ var options = {
 };
 var pgp = require("./pgpromise.js")(options);
 
-const db = pgp('postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d8muah1afp73t');
+const db = pgp('invalid connection string');
 
 
 // Database connection details;
