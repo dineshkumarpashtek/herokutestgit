@@ -9,14 +9,7 @@ module.exports = function (app, db, pgp) {
   app.post("/authentication",(req,res) =>{
   
     try {
-    var query = "select * from dataextension";  
-    const res =  db.query(query);
-    console.log('Table is retrived sucessfully');
-    console.log('res:'+JSON.stringify(res));
-    } catch (err) {
-    console.log(err.stack);
-    } 
-   /* var query = "select * from dataextension";
+    var query = "select * from dataextension";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
@@ -27,7 +20,11 @@ module.exports = function (app, db, pgp) {
       })
    .finally(function () {
         pgp.end(); // for immediate app exit, closing the connection pool.
-      }); */
+      }); 
+    }
+     catch (err) {
+    console.log(err.stack);
+    } 
   });
   
   app.post("/api/getCustomerJourneyByKey", function (req, res) {
