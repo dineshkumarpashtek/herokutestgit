@@ -1,4 +1,4 @@
-
+var pg = require('pg');
 
 //all the routes for our application
 module.exports = function (app, db, pgp) {
@@ -8,8 +8,15 @@ module.exports = function (app, db, pgp) {
  
   app.post("/authentication",(req,res) =>{
   
-    try {
-    var query = "select * from dataextension";
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+   client.query('SELECT * FROM dataextension', function(err, result) {
+      done();
+      if(err) return console.error(err);
+      console.log(result.rows);
+   });
+});
+   
+ /*   var query = "select * from dataextension";
     db.query(query, true)
       .then(function (data) {
         return res.json(data);
@@ -20,11 +27,8 @@ module.exports = function (app, db, pgp) {
       })
    .finally(function () {
         pgp.end(); // for immediate app exit, closing the connection pool.
-      }); 
-    }
-     catch (err) {
-    console.log(err.stack);
-    } 
+      });  */
+    
   });
   
   app.post("/api/getCustomerJourneyByKey", function (req, res) {
