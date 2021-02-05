@@ -1,4 +1,10 @@
 var pg = require('pg');
+const { Pool, Client } = require('pg');
+const connectionString = process.env.DATABASE_URL
+const pool = new Pool({
+  connectionString,
+});
+
 
 //all the routes for our application
 module.exports = function (app, db, pgp) {
@@ -7,13 +13,12 @@ module.exports = function (app, db, pgp) {
   // =====================================
  
   app.post("/authentication",(req,res) =>{
-  
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-   client.query('SELECT * FROM dataextension', function(err, result) {
-      done();
-      if(err) return console.error(err);
-      console.log(result.rows);
-   });
+   console.log('connectionString:'+connectionString);
+    pool.query('SELECT * FROM dataextension', (err, res) => {
+  console.log(err, res);
+  pool.end();
+  })
+   
 });
    
  /*   var query = "select * from dataextension";
