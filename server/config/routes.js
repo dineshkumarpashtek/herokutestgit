@@ -10,7 +10,7 @@ module.exports = function (app, db, pgp) {
   
     try {
     var query = "select * from dataextension";  
-    const res = await db.query(query);
+    const res =  db.query(query);
     console.log('Table is retrived sucessfully');
     console.log('res:'+res);
     } catch (err) {
