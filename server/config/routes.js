@@ -19,7 +19,6 @@ module.exports = function (app, db, pgp) {
   pool.end();
   })
    
-});
    
  /*   var query = "select * from dataextension";
     db.query(query, true)
