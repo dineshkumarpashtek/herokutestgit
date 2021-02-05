@@ -9,7 +9,7 @@ module.exports = function (app, db, pgp) {
   app.post("/authentication",(req,res) =>{
   
     var query = "select * from dataextension";
-     db.query(query, true)
+   await db.query(query, true)
       .then(function (data) {
         return res.json(data);
       })
