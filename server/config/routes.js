@@ -12,12 +12,10 @@ module.exports = function (app, db, pgp) {
     var query = "select * from dataextension";  
     const res =  db.query(query);
     console.log('Table is retrived sucessfully');
-    console.log('res:'+res);
+    console.log('res:'+JSON.stringify(res));
     } catch (err) {
     console.log(err.stack);
-    } finally {
-    db.close();
-    }
+    } 
    /* var query = "select * from dataextension";
     db.query(query, true)
       .then(function (data) {
