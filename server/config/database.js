@@ -14,6 +14,7 @@ var cn = {
   ssl: true
 };
 console.log('process.env.DATABASE_URL:'+process.env.DATABASE_URL);
+console.log('process.env.RACK_ENV:'+process.env.RACK_ENV);
 //var cn=process.env.DATABASE_URL;
 // You can check for all default values in:
 // https://github.com/brianc/node-postgres/blob/master/lib/defaults.js
