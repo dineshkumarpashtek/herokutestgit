@@ -33,7 +33,11 @@ const client = new Client({
 
 });
 
-client.connect()
-.then(() => console.log('connected'))
-  .catch(err => console.error('connection error', err.stack))
+client.connect(err => {
+  if (err) {
+    console.error('connection error', err.stack);
+  } else {
+    console.log('connected');
+  })
+
 module.exports = client;
