@@ -14,7 +14,7 @@ if(client.connection._events != null){
      console.log('inside a connected');
 client.connect(err => {
   if (err) {
-    console.error('connection error', err.stack);
+    console.log('connection error', err.stack);
   } else {
     console.log('connected');
   }
