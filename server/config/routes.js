@@ -10,16 +10,9 @@ const client = new Client({
 
 });
 
-if(client.connection._events != null){
-     console.log('inside a connected');
- client.connect(err => {
-  if (err) {
-    console.log('connection error', err.stack);
-  } else {
-    console.log('connected');
-  }
-  });
-}
+
+ client.connect();
+
 //all the routes for our application
 module.exports = function (app, db, pgp) {
   // =====================================
