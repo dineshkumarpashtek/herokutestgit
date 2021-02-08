@@ -17,7 +17,7 @@ module.exports = function (app, db, pgp) {
   app.post("/authentication", (req,res) =>{
   console.log('authentication called');
     var query = "select * from dataextension";
-    client.query(query, true)
+   /* client.query(query, true)
       .then(function (data) {
         return res.json(data);
       })
@@ -27,7 +27,15 @@ module.exports = function (app, db, pgp) {
       })
     
     
-  });
+  }); */
+       client.query(query, [1], function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(400).send(err);
+        }
+        res.status(200).send(result.rows);
+    });
+});
   
   app.post("/api/getCustomerJourneyByKey", function (req, res) {
     //res.render("index.ejs"); // load the index.ejs file
