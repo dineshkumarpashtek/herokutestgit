@@ -10,6 +10,8 @@ const client = new Client({
 
 });
 
+if(client.connection._events != null)
+     console.log('inside a connected');
 client.connect(err => {
   if (err) {
     console.error('connection error', err.stack);
@@ -17,6 +19,7 @@ client.connect(err => {
     console.log('connected');
   }
   });
+}
 //all the routes for our application
 module.exports = function (app, db, pgp) {
   // =====================================
