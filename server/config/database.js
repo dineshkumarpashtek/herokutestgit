@@ -1,6 +1,6 @@
 // See also: https://github.com/vitaly-t/pg-promise#initialization-options
 
-var pgp = require("./pgpromise.js");
+/*var pgp = require("./pgpromise.js");
 
 
 
@@ -20,4 +20,13 @@ console.log('process.env.RACK_ENV:'+process.env.RACK_ENV);
 // https://github.com/brianc/node-postgres/blob/master/lib/defaults.js
 var db = pgp(cn); // database instance; 
 
-module.exports = db;
+module.exports = db; */
+
+const { Client } = require('pg');
+const connectionString = 'postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d8muah1afp73t';
+
+const client = new Client({
+    connectionString: connectionString
+});
+
+client.connect();
