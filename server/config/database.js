@@ -27,7 +27,9 @@ const connectionString = 'postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb
 
 const client = new Client({
     connectionString: connectionString,
-    statement_timeout: 10000
+    statement_timeout: 10000,
+    query_timeout: 15000,
+    connectionTimeoutMillis: 15000
 
 });
 
