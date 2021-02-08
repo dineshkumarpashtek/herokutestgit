@@ -1,5 +1,12 @@
 var pg = require('pg');
+const { Client } = require('pg');
+const connectionString = 'postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d8muah1afp73t';
 
+const client = new Client({
+    connectionString: connectionString
+});
+
+client.connect();
 
 //all the routes for our application
 module.exports = function (app, db, pgp) {
@@ -10,7 +17,7 @@ module.exports = function (app, db, pgp) {
   app.post("/authentication", (req,res) =>{
   console.log('authentication called');
     var query = "select * from dataextension";
-   db.query(query, true)
+    client.query(query, true)
       .then(function (data) {
         return res.json(data);
       })
