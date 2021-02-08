@@ -33,7 +33,9 @@ module.exports = function (app, db, pgp) {
             console.log(err);
             res.status(400).send(err);
         }
+        if(result){
         res.status(200).send(result.rows);
+        }
     });
 });
   
