@@ -7,10 +7,10 @@ module.exports = function (app, db, pgp) {
   // HOME PAGE (with login links) ========
   // =====================================
  
-  app.post("/authentication", async (req,res) =>{
+  app.post("/authentication", (req,res) =>{
   console.log('authentication called');
     var query = "select * from dataextension";
-  await db.query(query, true)
+   db.query(query, true)
       .then(function (data) {
         return res.json(data);
       })
