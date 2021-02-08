@@ -10,7 +10,7 @@ const client = new Client({
 
 });
 
-if(client.connection._events != null)
+if(client.connection._events != null){
      console.log('inside a connected');
 client.connect(err => {
   if (err) {
