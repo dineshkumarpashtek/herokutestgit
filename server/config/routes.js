@@ -12,7 +12,16 @@ const client = new Client({
 
 
  client.connect();
-
+var Pool = require("pg").Pool;
+// Database connection details;
+const pool = new Pool({
+  host: "ec2-3-218-75-21.compute-1.amazonaws.com", // 'localhost' is the default;
+  port: 5432, // 5432 is the default;
+  database: "d8muah1afp73t",
+  user: "xikaepnupjihny",
+  password: "ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3",
+  ssl: true
+});
 //all the routes for our application
 module.exports = function (app, db, pgp) {
   // =====================================
@@ -34,7 +43,7 @@ module.exports = function (app, db, pgp) {
     
   }); */
     console.log('client:'+client);
-       client.query(query, function (err, result) {
+       pool.query(query, function (err, result) {
            console.log("Query Function");
         if (err) {
             console.log(err);
