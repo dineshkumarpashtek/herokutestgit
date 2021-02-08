@@ -28,7 +28,7 @@ module.exports = function (app, db, pgp) {
     
     
   }); */
-       client.query(query, [1], function (err, result) {
+       client.query(query, function (err, result) {
            console.log("Query Function");
         if (err) {
             console.log(err);
