@@ -15,9 +15,8 @@ module.exports = function (app, db, pgp) {
             console.log(err);
             res.status(400).send(err);
         }
-        if(result){
-        res.status(200).send(result.rows);
-        }
+        res.json(result.rows);
+        
     });
 });
   
@@ -35,15 +34,14 @@ ON customer_journey.journey_id = journey.id \
 INNER JOIN customer_journey_ds_values \
 ON customer_journey_ds_values.journeyid = customer_journey.journey_id \
 where journey.journey_key = '" + journey_key + "'";
-    db.query(query, true)
-      .then(function (data) {
-        return res.json(data);
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-   
+    db.query(query, (err, result) => {
+      if (err) {
+            res.status(400).send(err);
+        }
+        res.json(result.rows);
+        
+    });
+    
   });
   
    app.post("/api/getJourneyDataExtensionByKey", function (req, res) {
@@ -60,17 +58,14 @@ ON dataextension.ID = journey_data_extension.dataextensionid \
 INNER JOIN journey  \
     ON journey_data_extension.journeyid = journey.ID \
 where journey.journey_key = '" + journey_key + "'";
-    db.query(query, true)
-      .then(function (data) {
-        return res.json(data);
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-   .finally(function () {
-        pgp.end(); // for immediate app exit, closing the connection pool.
-      });
+    db.query(query, (err, result) => {
+      if (err) {
+            res.status(400).send(err);
+        }
+        res.status(200).send(result.rows);
+        
+    });
+      
   });
 
   
@@ -91,17 +86,13 @@ INNER JOIN base_template c \
   ON B.base_templateid = c.ID \
 WHERE CT.templatekey  = '" + creative_key + "'";
  
-    db.query(query, true)
-      .then(function (data) {
-        return res.json(data);
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-   .finally(function () {
-        pgp.end(); // for immediate app exit, closing the connection pool.
-      });
+    db.query(query, (err, result) => {
+      if (err) {
+            res.status(400).send(err);
+        }
+        res.status(200).send(result.rows);
+        
+    });
   });
   
   
