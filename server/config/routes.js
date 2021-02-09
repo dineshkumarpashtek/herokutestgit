@@ -7,6 +7,9 @@ const client = new Client({
     statement_timeout: 10000,
     query_timeout: 15000,
     connectionTimeoutMillis: 15000
+   ssl: {
+    rejectUnauthorized: false
+  }
 
 });
 
@@ -43,7 +46,7 @@ module.exports = function (app, db, pgp) {
     
   }); */
     console.log('client:'+client);
-       pool.query(query, function (err, result) {
+       client.query(query, function (err, result) {
            console.log("Query Function");
         if (err) {
             console.log(err);
