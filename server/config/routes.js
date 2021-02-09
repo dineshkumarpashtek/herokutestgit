@@ -15,7 +15,7 @@ module.exports = function (app, db, pgp) {
             console.log(err);
             res.status(400).send(err);
         }
-        res.json(result.rows);
+        return res.json(result.rows);
         
     });
 });
@@ -38,7 +38,7 @@ where journey.journey_key = '" + journey_key + "'";
       if (err) {
             res.status(400).send(err);
         }
-        res.json(result.rows);
+        return res.json(result.rows);
         
     });
     
