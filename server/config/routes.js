@@ -1,12 +1,12 @@
 var pg = require('pg');
-const { Pool, Client } = require('pg')
+/*const { Pool, Client } = require('pg')
 const connectionString = 'postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d8muah1afp73t'
 const pool = new Pool({
     connectionString,
     ssl: {
         rejectUnauthorized: false
       }
-})
+})*/
 
 // client.connect();
 /*var Pool = require("pg").Pool;
@@ -39,8 +39,7 @@ module.exports = function (app, db, pgp) {
     
     
   }); */
-       pool.query(query, function (err, result) {
-           console.log("Query Function");
+       db.query(query, function (err, result) {
         if (err) {
             console.log(err);
             res.status(400).send(err);
@@ -73,9 +72,7 @@ where journey.journey_key = '" + journey_key + "'";
         console.log("ERROR:", err); // print the error;
         return res.status(400).json({ success: false, error: err });
       })
-   .finally(function () {
-        pgp.end(); // for immediate app exit, closing the connection pool.
-      });
+   
   });
   
    app.post("/api/getJourneyDataExtensionByKey", function (req, res) {
