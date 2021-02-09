@@ -39,7 +39,6 @@ module.exports = function (app, db, pgp) {
     
     
   }); */
-    console.log('client:'+client);
        pool.query(query, function (err, result) {
            console.log("Query Function");
         if (err) {
