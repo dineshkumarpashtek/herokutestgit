@@ -1,16 +1,14 @@
 var pg = require('pg');
-const { Client } = require('pg');
-const connectionString = 'postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d8muah1afp73t';
-
-const client = new Client({
-    connectionString: connectionString,
+const { Pool, Client } = require('pg')
+const connectionString = 'postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d8muah1afp73t'
+const pool = new Pool({
+    connectionString,
     ssl: {
-    rejectUnauthorized: false
-  }
+        rejectUnauthorized: false
+      }
+})
 
-});
-
- client.connect();
+// client.connect();
 /*var Pool = require("pg").Pool;
 // Database connection details;
 const pool = new Pool({
@@ -42,7 +40,7 @@ module.exports = function (app, db, pgp) {
     
   }); */
     console.log('client:'+client);
-       client.query(query, function (err, result) {
+       pool.query(query, function (err, result) {
            console.log("Query Function");
         if (err) {
             console.log(err);
