@@ -1,24 +1,5 @@
 var pg = require('pg');
-/*const { Pool, Client } = require('pg')
-const connectionString = 'postgres://xikaepnupjihny:ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3@ec2-3-218-75-21.compute-1.amazonaws.com:5432/d8muah1afp73t'
-const pool = new Pool({
-    connectionString,
-    ssl: {
-        rejectUnauthorized: false
-      }
-})*/
 
-// client.connect();
-/*var Pool = require("pg").Pool;
-// Database connection details;
-const pool = new Pool({
-  host: "ec2-3-218-75-21.compute-1.amazonaws.com", // 'localhost' is the default;
-  port: 5432, // 5432 is the default;
-  database: "d8muah1afp73t",
-  user: "xikaepnupjihny",
-  password: "ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3",
-  ssl: true
-}); */
 //all the routes for our application
 module.exports = function (app, db, pgp) {
   // =====================================
@@ -28,18 +9,8 @@ module.exports = function (app, db, pgp) {
   app.post("/authentication", (req,res) =>{
   console.log('authentication called');
     var query = "select * from dataextension";
-   /* client.query(query, true)
-      .then(function (data) {
-        return res.json(data);
-      })
-      .catch(function (err) {
-        console.log("ERROR:", err); // print the error;
-        return res.status(400).json({ success: false, error: err });
-      })
-    
-    
-  }); */
-       db.query(query, function (err, result) {
+  
+       db.query(query, (err, result) => {
         if (err) {
             console.log(err);
             res.status(400).send(err);
