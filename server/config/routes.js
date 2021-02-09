@@ -10,9 +10,8 @@ const client = new Client({
 
 });
 
-
  client.connect();
-var Pool = require("pg").Pool;
+/*var Pool = require("pg").Pool;
 // Database connection details;
 const pool = new Pool({
   host: "ec2-3-218-75-21.compute-1.amazonaws.com", // 'localhost' is the default;
@@ -21,7 +20,7 @@ const pool = new Pool({
   user: "xikaepnupjihny",
   password: "ed8939f2a3555e38e3ff018e0adb5885463936afffd70c501f6b1d5fcefdf7a3",
   ssl: true
-});
+}); */
 //all the routes for our application
 module.exports = function (app, db, pgp) {
   // =====================================
