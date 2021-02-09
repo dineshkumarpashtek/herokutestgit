@@ -12,7 +12,6 @@ var session      = require('express-session');
 
 var pgp = require('./server/config/pgpromise.js');  
 var db= require('./server/config/database.js') 
-console.log('db:'+JSON.stringify(db));
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
